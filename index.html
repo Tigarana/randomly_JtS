@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+    hallo
+    <script>
+        var request = new XMLHttpRequest();  
+        request.open("GET", "randomSuggestions.csv", false);   
+        request.send(null);  
+
+        var csvData = new Array();
+        var jsonObject = request.responseText.split(/\r?\n|\r/);
+        for (var i = 0; i < jsonObject.length; i++) {
+            csvData.push(jsonObject[i].split(','));
+        }
+        
+        alert(csvData[Math.floor(Math.random() * csvData.length)][0])
+    </script>
+</body>
+</html>
