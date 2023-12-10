@@ -1,8 +1,35 @@
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        #container {
+            width: 50%;
+            min-width: 200px;
+            margin: 0 auto;
+            padding-top: 25%;   
+
+            text-align: center;
+        }
+
+        #text {
+            font-size: 32px;
+        }
+
+        a {
+            font-size: 8px;
+        }
+    </style>
 </head>
 <body>
-    hallo
+    <div id="container">
+        <p id="text"></p>
+        <a href="#" id="refresh">Refresh</a>
+    </div>
     <script>
         var request = new XMLHttpRequest();  
         request.open("GET", "randomSuggestions.csv", false);   
@@ -14,7 +41,14 @@
             csvData.push(jsonObject[i].split(','));
         }
         
-        alert(csvData[Math.floor(Math.random() * csvData.length)][0])
+        var textContent = document.getElementById("text");
+        var refreshButton = document.getElementById("refresh");
+        refreshButton.addEventListener("click", refresh)
+        function refresh() {
+            textContent.innerHTML = csvData[Math.floor(Math.random() * csvData.length)][0]
+        }
+
+        refresh()
     </script>
 </body>
 </html>
